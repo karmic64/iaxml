@@ -11,7 +11,7 @@ endif
 
 CFLAGS:=-flto -Ofast -Wall -Wextra -Wpedantic $(shell xml2-config --cflags)
 LDFLAGS:=-s
-LDLIBS:=-lcrypto $(shell xml2-config --libs)
+LDLIBS:=-lcrypto $(LIBICONV) $(shell xml2-config --libs)
 
 
 %$(DOTEXE): %.c
