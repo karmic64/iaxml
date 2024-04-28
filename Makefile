@@ -4,16 +4,14 @@
 ifdef COMSPEC
 DOTEXE:=.exe
 LIBICONV:=-liconv
-INCDIR:=-I/mingw64/include/libxml2
 else
 DOTEXE:=
 LIBICONV:=
-INCDIR:=
 endif
 
-CFLAGS:=-flto -Ofast -Wall -Wextra -Wpedantic $(INCDIR)
+CFLAGS:=-flto -Ofast -Wall -Wextra -Wpedantic $(shell xml2-config --cflags)
 LDFLAGS:=-s
-LDLIBS:=-lxml2 -lcrypto $(LIBICONV)
+LDLIBS:=-lcrypto $(shell xml2-config --libs)
 
 
 %$(DOTEXE): %.c
